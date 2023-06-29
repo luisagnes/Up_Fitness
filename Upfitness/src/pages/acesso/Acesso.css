@@ -1,0 +1,203 @@
+/* Geral */
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+
+body {
+  background: #fafafa;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: #555; 
+}*/
+
+/* remove arrows from imput number in Chrome, Safari, Edge, Opera */
+/* input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.content {
+  min-height: 100vh;
+  padding: 80px 20px;
+} */
+
+/* Conteudo */
+/* .form {
+  width: max-content;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+  background: #fff;
+  box-shadow: 0 0 20px rgb(0 0 0 / 12%);
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  padding: 40px;
+} */
+
+/* logo */
+/* .form-header {
+  text-align: center;
+}
+
+.form-header img {
+  width: 120px;
+} */
+
+/* titulo */
+/* .form-header h1 {
+  margin: 20px 0 32px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.form-header p {
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.form-fieldset legend,
+.form-input label {
+  font-weight: 500;
+  position: relative;
+  top: 10px;
+  left: 16px;
+  color: #222;
+  background: #fff;
+  padding: 0 12px;
+  transition: .3s;
+}
+
+.form-fieldset legend {
+  position: inherit;
+}
+
+.form-fieldset,
+.form-input input {
+  width: 100%;
+  padding: 16px;
+  display: block;
+  outline: none;
+  border: 1px solid #999;
+  transition: .3s;
+  font-size: 1rem;
+  background: transparent;
+  border-radius: 4px;
+}
+
+.form-fieldset {
+  padding: 0 16px;
+  margin-top: 12px;
+  display: flex;
+}
+
+.form-fieldset input {
+  margin-right: 12px;
+  position: relative;
+  bottom: 3px;
+}
+
+.form-fieldset label {
+  padding: 8px 8px 16px;
+  display: inline-block;
+}
+
+.form-fieldset:hover,
+.form-input input:hover,
+.form-input input:focus {
+  border-color: #111;
+}
+
+.form-input input::placeholder {
+  font-size: 1rem;
+}
+
+.form-btn {
+  text-align: center;
+}
+
+.form-btn button.btn {
+  display: block;
+  width: 100%;
+  padding: 12px 24px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  transition: .3s;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+.form-btn button.btn:hover {
+  background: #333;
+  transform: scale(0.98);
+}
+
+.form-btn button.btn-alt {
+  display: block;
+  width: 100%;
+  padding: 12px 24px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+  transition: .3s;
+  margin: 0 0 20px;
+  border-radius: 4px;
+}
+
+.form-btn button.btn-alt:hover {
+  background: #ddd;
+  transform: scale(0.98);
+}
+
+.form-btn .link {
+  display: block;
+  margin-top: 20px;
+}
+
+.form-btn p {
+  text-align: center;
+} */
+
+/* cadastro */
+/* .cadastro {
+  height: 100%;
+  background: #fff;
+  box-shadow: 0 0 20px rgb(0 0 0 / 12%);
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cadastro .form-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.cadastro .form-header h1 {
+  margin: 0;
+}
+
+.form-fields {
+  padding: 40px;
+}
+
+.form-img img {
+  height: 100%;
+  object-fit: cover;
+} */

@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background: #fafafa;
+}
+
+img {
+  max-width: 100%;
+}
+
+.content {
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.perfilInfo {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid;
+}
+
+.home-button {
+  display: flex;
+  align-items: center;
+}
+
+.home-button h1 {
+  margin-right: 10px;
+}
+
+.home-button a {
+  padding: 10px 20px;
+  background-color: #ff4081;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.home-button a:hover {
+  background-color: #d5004e;
+}
+
+.perfilMenu {
+  width: 50%;
+}
+
+.perfilMenu ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.perfilMenu ul li {
+  flex: 1 0 calc(50% - 6px);
+  text-align: center;
+}
+
+.perfilMenu ul li a {
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  background: #eee;
+  transition: 0.3s;
+}
+
+.perfilMenu ul li a:hover {
+  background: #ddd;
+  cursor: pointer;
+}
+
+.perfilFoto img {
+  width: 120px;
+  cursor: pointer;
+}
+
+.treinamentos {
+  padding: 20px 0;
+}
+
+.treinoLista {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 992px) {
+  .treinoLista {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .perfilMenu {
+    width: 100%;
+    order: 2;
+  }
+  .perfilInfo {
+    flex-wrap: wrap;
+  }
+  .treinoLista {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .perfilMenu ul {
+    flex-direction: column;
+  }
+  .perfilInfo h1 {
+    font-size: 1.5rem;
+  }
+}
