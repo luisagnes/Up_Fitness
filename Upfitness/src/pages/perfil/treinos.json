@@ -1,0 +1,72 @@
+[
+  {
+    "segunda": [
+      "supino reto",
+      "Supino Reto",
+      "Supino Reto com Halter",
+      "Decline Press / Supino Declinado",
+      "Supino Reto Máquina",
+      "Supino Inclinado com Halter",
+      "Crucifixo Inclinado no cabo"
+    ]
+  },
+  {
+    "terca": [
+      "supino reto",
+      "Supino Reto",
+      "gachamento",
+      "Agachamento com pulo",
+      "Agachamento búlgaro",
+      "Afundo",
+      "Afundo lateral",
+      "Afundo reverso com elevação de joelho"
+    ]
+  },
+  {
+    "quarta": [
+      "Puxada aberta no pulley",
+      "lexão de ombros no cross",
+      "emada com corda na polia alta",
+      "emada unilateral na polia alta",
+      "oador dorsal",
+      "emada curvada HBC com pegada pronada",
+      "Remada unilateral apoiada no banco",
+      "Remada aberta no TRX"
+    ]
+  },
+  {
+    "quinta": [
+      "Rosca bíceps direta com barra",
+      "Rosca bíceps direta com barra e pegada ampla",
+      "Rosca bíceps direta com halteres",
+      "Rosca bíceps martelo em pé com halteres",
+      "Rosca bíceps em pé na barra EZ",
+      "Rosca bíceps no cabo e usando a corda",
+      "Rosca bíceps com halteres no banco inclinado",
+      "Rosca bíceps apoiado no banco Scott e com a barra EZ"
+    ]
+  },
+  {
+    "sexta": [
+      "Elevação lateral do ombro",
+      "Elevação frontal",
+      "Encolhimento de ombros",
+      "Arnold press",
+      "Desenvolvimento na máquina com pegada fechada",
+      "Remada alta no cross",
+      "Remada unilateral no cross com pegada média",
+      "Rotação externa de ombros"
+    ]
+  },
+  {
+    "sabado": [
+      "Extensão de tríceps deitado ou inclinado",
+      "Supino no banco reto com pegada fechada.",
+      "Mergulho no banco.",
+      "Tríceps apoiado no banco.",
+      "Extensão de halteres sob a cabeça.",
+      "Mergulho nas paralelas (com ou sem pesos)",
+      "Tríceps na máquina."
+    ]
+  }
+]
