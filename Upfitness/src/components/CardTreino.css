@@ -1,0 +1,44 @@
+.treino-card {
+  padding: 32px;
+  background: #fff;
+  box-shadow: 0 0 20px rgb(0 0 0 / 12%);
+  border-radius: 8px;
+}
+
+.treino-card .card-title {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.treino-card .card-title h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.treino-card .card-title p {
+  text-transform: uppercase;
+  font-size: .875rem;
+  font-weight: 500;
+  color: orangered;
+}
+
+.treino-card th {
+  background: #ddd;
+  text-align: left;
+  padding: 12px;
+}
+
+.treino-card td {
+  width: 100%;
+  padding: 12px;
+}
+
+.treino-card tr:nth-child(even) {
+  background: #eee;
+}
+
+.treino-card td:nth-child(even) {
+  text-align: center;
+}
