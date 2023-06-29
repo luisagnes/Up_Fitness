@@ -29,10 +29,10 @@ export default function Perfil() {
       <div className={styles.content}>
         <div className={styles.container}>
           <div className={styles.perfil}>
-            <header className={stsyles.perfilInfo}>
+            <header className={styles.perfilInfo}>
               <div>
                 <h1>Perfil do Aluno</h1>
-                <Link className="home-button" to="/">Home</Link>
+                <Link className="home-button" to="/">Sair</Link>
               </div>
 
               <nav className={styles.perfilMenu}>
