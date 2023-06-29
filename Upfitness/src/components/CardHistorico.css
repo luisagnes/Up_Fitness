@@ -1,0 +1,24 @@
+.historico-item {
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 2px 0 8px rgb(0 0 0 / 8%);
+  transition: .3s;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.historico-item:hover {
+  box-shadow: 0 0 20px rgb(0 0 0 / 12%);
+  transform: scale(1.01);
+}
+
+.historico-item h2 {
+  font-weight: 500;
+  font-size: 1.25rem;
+  padding-top: 8px;
+}
+
+.historico-item p {
+  margin: 8px 0;
+}
