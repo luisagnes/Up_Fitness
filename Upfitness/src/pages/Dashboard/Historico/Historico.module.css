@@ -1,0 +1,11 @@
+.historico ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.historico ul li {
+  padding: 32px;
+  background: #fff;
+  box-shadow: 0 0 20px rgb(0 0 0 / 12%);
+  border-radius: 8px;
+}

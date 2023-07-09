@@ -1,17 +1,11 @@
-// import { Link } from "react-router-dom";
+import { Button } from '../../components/Button/Button';
 
-import Header from "../../components/Header";
-import Container from "../../components/Container";
-import Button from "../../components/Button";
+import './Home.css';
 
-import "./Home.css";
-
-export default function Home() {
+export const Home = () => {
   return (
     <>
-      <Header />
-
-      <Container>
+      <div className="container">
         <div className="hero-container">
           <div className="hero-blocks">
             <div className="hero-block-item span-col3 item1">
@@ -35,7 +29,7 @@ export default function Home() {
             <div className="hero-block-item span-col3 item6"></div>
           </div>
         </div>
-      </Container>
+      </div>
     </>
   );
-}
+};
