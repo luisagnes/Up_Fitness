@@ -1,25 +1,37 @@
-import { Routes, Route } from 'react-router-dom';
-import Home from './pages/home/Home';
-import Login from './pages/acesso/Login';
-import Cadastro from './pages/acesso/Cadastro';
-import RecuperarSenha from './pages/acesso/RecuperarSenha';
-import Perfil from './pages/perfil/Perfil';
-import Historico from './pages/perfil/Historico';
+import './App.css';
+import { onAuthStateChanged } from 'firebase/auth';
 
-function App() {
+//hooks
+import { useState, useEffect } from 'react';
+import { useAuthentication } from './hooks/useAuthtication';
+
+//context
+import { AuthProvider } from './context/authContext';
+
+// routes
+import { AppRoutes } from './routes';
+
+export const App = () => {
+  const [user, setUser] = useState(undefined);
+  const { auth } = useAuthentication();
+
+  const loadingUser = user === undefined;
+
+  useEffect(() => {
+    return () => {
+      onAuthStateChanged(auth, (user) => {
+        setUser(user);
+      });
+    };
+  }, [auth]);
+
+  if (loadingUser) {
+    return <p>Carregando...</p>;
+  }
+
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/recuperar-senha" element={<RecuperarSenha />} />
-        <Route path="/perfil" element={<Perfil />} />
-        <Route path='/historico' element={<Historico />} />
-      </Routes>
-    </>
+    <AuthProvider value={{user}}>
+      <AppRoutes />
+    </AuthProvider>
   );
-}
-
-export default App;
-
+};

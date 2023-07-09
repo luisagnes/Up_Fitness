@@ -1,0 +1,31 @@
+.register {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 32px;
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.form_intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.form_intro img {
+  width: 120px;
+}
+
+.register_img img {
+  width: 100%;
+  height: 620px;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+@media(max-width: 800px) {
+  .register {grid-template-columns: 1fr;}
+  .form_intro {flex-direction: column;}
+  .register_img {display: none;}
+}

@@ -1,0 +1,91 @@
+.perfil {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.perfil_editar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.perfil_editar > span {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.form_perfil {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+.form_perfil.ativo {
+  display: flex;
+}
+.form_perfil form {
+  text-align: center;
+  padding: 32px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  width: 480px;
+}
+.form_perfil form legend {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+.form_perfil_cta {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* .form_radio{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0;
+}
+.form_radio span {
+  flex: 1 0 100%;
+}
+.form_radio label {
+  display: flex;
+  gap: 12px;
+}
+.form_radio label input {
+  margin: 0;
+} 
+
+            <div className={styles.form_radio}>
+              <span>Sexo:</span>
+              <label>
+                <input
+                  name="sexo"
+                  type="radio"
+                  value={sexo}
+                  onChange={(e) => setSexo(e.target.value)}
+                />
+                Homem
+              </label>
+              <label>
+                <input
+                  name="sexo"
+                  type="radio"
+                  value={sexo}
+                  onChange={(e) => setSexo(e.target.value)}
+                />
+                Mulher
+              </label>
+            </div>
+*/
