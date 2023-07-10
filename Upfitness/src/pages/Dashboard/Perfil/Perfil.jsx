@@ -1,52 +1,75 @@
 import styles from './Perfil.module.css';
 
 import { useAuthValue } from '../../../context/authContext';
-import { useState } from 'react';
-import { useInsertDocument } from '../../../hooks/useInsertDocument';
+import { useState, useEffect, useContext } from 'react';
+import { useFetchDocument, useUpdateDocument } from '../../../hooks/useFetchDocument';
 import { Link, useNavigate } from 'react-router-dom';
-import { useFetchDocument } from '../../../hooks/useFetchDocument';
+
+
+const PerfilContext = React.createContext();
+
+
+const PerfilProvider = ({ children }) => {
+  const [perfilInfo, setPerfilInfo] = useState({
+    idade: '',
+    peso: '',
+    disponibilidade: '',
+    diasTreino: ''
+  });
+
+  return (
+    <PerfilContext.Provider value={{ perfilInfo, setPerfilInfo }}>
+      {children}
+    </PerfilContext.Provider>
+  );
+};
 
 export const Perfil = () => {
-  const [profileInfo, setProfileInfo] = useState(false);
-  const [idade, setIdade] = useState('');
-  const [peso, setPeso] = useState('');
-  const [diasTreino, setDiasTreino] = useState('');
-  const [disponibilidade, setDisponibilidade] = useState('');
+  const { perfilInfo, setPerfilInfo } = useContext(PerfilContext);
   const [formError, setFormError] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
 
   const { documents: perfil, loading } = useFetchDocument('perfil');
+  const { updateDocument, response } = useUpdateDocument('perfil');
 
   const { user } = useAuthValue();
-  const { insertDocument, response } = useInsertDocument('perfil');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (perfil[0]) {
+      setPerfilInfo({
+        idade: perfil[0].idade || '',
+        peso: perfil[0].peso || '',
+        disponibilidade: perfil[0].disponibilidade || '',
+        diasTreino: perfil[0].diasTreino || ''
+      });
+    }
+  }, [perfil, setPerfilInfo]);
+
+  useEffect(() => {
+    if (response.data) {
+      navigate('/perfil');
+    }
+  }, [response.data, navigate]);
 
   function handleSubmit(e) {
     e.preventDefault();
     setFormError('');
 
-    // checando valores
-    if (!idade || !peso || !diasTreino || !disponibilidade) {
+  
+    if (!perfilInfo.idade || !perfilInfo.peso || !perfilInfo.disponibilidade || !perfilInfo.diasTreino) {
       setFormError('Por favor, preencha todos os campos!');
+      return;
     }
 
-    if (formError) return;
+    updateDocument(perfil[0].id, perfilInfo);
 
-    insertDocument({
-      idade,
-      peso,
-      diasTreino,
-      disponibilidade,
-      uid: user.uid,
-      createdBy: user.displayName,
-    });
-
-    // refresh
-    navigate(0);
+    setIsEditing(false);
   }
 
   function editProfile(e) {
     e.preventDefault();
-    setProfileInfo((current) => !current);
+    setIsEditing(true);
   }
 
   return (
@@ -62,78 +85,80 @@ export const Perfil = () => {
 
         <div className={styles.perfil_info}>
           {loading && <p>Carregando...</p>}
-          <p>Idade: {perfil && perfil.map((i) => i.idade)} anos</p>
-          <p>Peso: {perfil && perfil.map((i) => i.peso)} kg</p>
-          <p>Disponibilidade: {perfil && perfil.map((i) => i.disponibilidade)} dias por semana</p>
-          <p>Tempo de atividade: {perfil && perfil.map((i) => i.diasTreino)} meses</p>
+          <p>Idade: {perfilInfo.idade} anos</p>
+          <p>Peso: {perfilInfo.peso} kg</p>
+          <p>Tempo de atividade: {perfilInfo.disponibilidade} meses</p>
+          <p>Disponibilidade: {perfilInfo.diasTreino} dias por semana</p>
         </div>
 
-        <div
-          className={`${styles.form_perfil} ${profileInfo ? styles.ativo : ''}`}
-        >
-          <form onSubmit={handleSubmit}>
-            <legend>Editar Perfil</legend>
-            <label>
-              <span>Idade: </span>
-              <input
-                type="number"
-                name="idade"
-                required
-                placeholder="Qual sua idade?"
-                value={idade}
-                onChange={(e) => setIdade(e.target.value)}
-              />
-            </label>
-            <label>
-              <span>Peso: </span>
-              <input
-                type="number"
-                name="peso"
-                required
-                placeholder="Qual seu peso?"
-                value={peso}
-                onChange={(e) => setPeso(e.target.value)}
-              />
-            </label>
-            <label>
-              <span>Disponíbilidade: </span>
-              <input
-                type="number"
-                name="diasTreino"
-                required
-                placeholder="Quantos dias por semana você pode treinar?"
-                value={diasTreino}
-                onChange={(e) => setDiasTreino(e.target.value)}
-              />
-            </label>
-            <label>
-              <span>Tempo de atividade: </span>
-              <input
-                type="number"
-                name="disponibilidade"
-                required
-                placeholder="Pratica atividades físicas a quanto tempo?"
-                value={disponibilidade}
-                onChange={(e) => setDisponibilidade(e.target.value)}
-              />
-            </label>
-            <div className={styles.form_perfil_cta}>
-              {!response.loading && <button className="btn">Confirmar</button>}
-              {response.loading && (
-                <button className="btn" disabled>
-                  Aguarde...
-                </button>
-              )}
-              <Link onClick={editProfile} className="btn-alt">
-                Cancelar
-              </Link>
-            </div>
+        {isEditing && (
+          <div className={`${styles.form_perfil} ${isEditing ? styles.ativo : ''}`}>
+            <form onSubmit={handleSubmit}>
+              <legend>Editar Perfil</legend>
+              <label>
+                <span>Idade: </span>
+                <input
+                  type="number"
+                  name="idade"
+                  required
+                  placeholder="Qual sua idade?"
+                  value={perfilInfo.idade}
+                  onChange={(e) => setPerfilInfo({ ...perfilInfo, idade: e.target.value })}
+                />
+              </label>
+              <label>
+                <span>Peso: </span>
+                <input
+                  type="number"
+                  name="peso"
+                  required
+                  placeholder="Qual seu peso?"
+                  value={perfilInfo.peso}
+                  onChange={(e) => setPerfilInfo({ ...perfilInfo, peso: e.target.value })}
+                />
+              </label>
+              <label>
+                <span>Tempo de atividade: </span>
+                <input
+                  type="number"
+                  name="disponibilidade"
+                  required
+                  placeholder="Pratica atividades físicas a quanto tempo em meses?"
+                  value={perfilInfo.disponibilidade}
+                  onChange={(e) => setPerfilInfo({ ...perfilInfo, disponibilidade: e.target.value })}
+                />
+              </label>
+              <label>
+                <span>Disponibilidade: </span>
+                <input
+                  type="number"
+                  name="diasTreino"
+                  required
+                  placeholder="Quantos dias por semana você pode treinar?"
+                  value={perfilInfo.diasTreino}
+                  onChange={(e) => setPerfilInfo({ ...perfilInfo, diasTreino: e.target.value })}
+                />
+              </label>
+              <div className={styles.form_perfil_cta}>
+                <button className="btn">Confirmar</button>
+                <Link onClick={() => setIsEditing(false)} className="btn-alt">
+                  Cancelar
+                </Link>
+              </div>
 
-            {response.error && <p className="error">{response.error}</p>}
-            {formError && <p className="error">{formError}</p>}
-          </form>
-        </div>
+              {formError && <p className="error">{formError}</p>}
+            </form>
+          </div>
+        )}
       </div>
     </div>
+  );
+};
+
+export const PerfilPage = () => {
+  return (
+    <PerfilProvider>
+      <Perfil />
+    </PerfilProvider>
   );
 };
