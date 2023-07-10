@@ -1,74 +1,49 @@
 import styles from './Perfil.module.css';
 
 import { useAuthValue } from '../../../context/authContext';
-import { useState, useEffect, useContext } from 'react';
-import { useFetchDocument, useUpdateDocument } from '../../../hooks/useFetchDocument';
+import { useState } from 'react';
+import { useFetchDocument } from '../../../hooks/useFetchDocument';
 import { Link, useNavigate } from 'react-router-dom';
 
-
-const PerfilContext = React.createContext();
-
-
-const PerfilProvider = ({ children }) => {
+export const Perfil = () => {
   const [perfilInfo, setPerfilInfo] = useState({
     idade: '',
     peso: '',
     disponibilidade: '',
     diasTreino: ''
   });
-
-  return (
-    <PerfilContext.Provider value={{ perfilInfo, setPerfilInfo }}>
-      {children}
-    </PerfilContext.Provider>
-  );
-};
-
-export const Perfil = () => {
-  const { perfilInfo, setPerfilInfo } = useContext(PerfilContext);
   const [formError, setFormError] = useState('');
   const [isEditing, setIsEditing] = useState(false);
 
   const { documents: perfil, loading } = useFetchDocument('perfil');
-  const { updateDocument, response } = useUpdateDocument('perfil');
 
   const { user } = useAuthValue();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (perfil[0]) {
-      setPerfilInfo({
-        idade: perfil[0].idade || '',
-        peso: perfil[0].peso || '',
-        disponibilidade: perfil[0].disponibilidade || '',
-        diasTreino: perfil[0].diasTreino || ''
-      });
-    }
-  }, [perfil, setPerfilInfo]);
-
-  useEffect(() => {
-    if (response.data) {
-      navigate('/perfil');
-    }
-  }, [response.data, navigate]);
 
   function handleSubmit(e) {
     e.preventDefault();
     setFormError('');
 
-  
+    // checando valores
     if (!perfilInfo.idade || !perfilInfo.peso || !perfilInfo.disponibilidade || !perfilInfo.diasTreino) {
       setFormError('Por favor, preencha todos os campos!');
       return;
     }
 
-    updateDocument(perfil[0].id, perfilInfo);
+    // Salvar os dados no perfil aqui
+    // ...
 
     setIsEditing(false);
   }
 
   function editProfile(e) {
     e.preventDefault();
+    setPerfilInfo({
+      idade: perfil[0]?.idade || '',
+      peso: perfil[0]?.peso || '',
+      disponibilidade: perfil[0]?.disponibilidade || '',
+      diasTreino: perfil[0]?.diasTreino || ''
+    });
     setIsEditing(true);
   }
 
@@ -155,10 +130,3 @@ export const Perfil = () => {
   );
 };
 
-export const PerfilPage = () => {
-  return (
-    <PerfilProvider>
-      <Perfil />
-    </PerfilProvider>
-  );
-};
