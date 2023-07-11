@@ -1,9 +1,7 @@
 import styles from './Perfil.module.css';
-
-import { useAuthValue } from '../../../context/authContext';
-import { useState } from 'react';
-import { useFetchDocument } from '../../../hooks/useFetchDocument';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuthValue } from '../../../context/authContext';
 
 export const Perfil = () => {
   const [perfilInfo, setPerfilInfo] = useState({
@@ -15,10 +13,15 @@ export const Perfil = () => {
   const [formError, setFormError] = useState('');
   const [isEditing, setIsEditing] = useState(false);
 
-  const { documents: perfil, loading } = useFetchDocument('perfil');
-
   const { user } = useAuthValue();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedPerfilInfo = localStorage.getItem('perfilInfo');
+    if (storedPerfilInfo) {
+      setPerfilInfo(JSON.parse(storedPerfilInfo));
+    }
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -31,19 +34,13 @@ export const Perfil = () => {
     }
 
     // Salvar os dados no perfil aqui
-    // ...
+    localStorage.setItem('perfilInfo', JSON.stringify(perfilInfo));
 
     setIsEditing(false);
   }
 
   function editProfile(e) {
     e.preventDefault();
-    setPerfilInfo({
-      idade: perfil[0]?.idade || '',
-      peso: perfil[0]?.peso || '',
-      disponibilidade: perfil[0]?.disponibilidade || '',
-      diasTreino: perfil[0]?.diasTreino || ''
-    });
     setIsEditing(true);
   }
 
@@ -52,14 +49,13 @@ export const Perfil = () => {
       <div className={styles.perfil}>
         <h1>Perfil</h1>
         <div className={styles.perfil_editar}>
-          <span>Bem vindo, {user.displayName}!</span>
+          <span>Bem-vindo, {user.displayName}!</span>
           <button className="btn-alt" onClick={editProfile}>
             Editar Perfil
           </button>
         </div>
 
         <div className={styles.perfil_info}>
-          {loading && <p>Carregando...</p>}
           <p>Idade: {perfilInfo.idade} anos</p>
           <p>Peso: {perfilInfo.peso} kg</p>
           <p>Tempo de atividade: {perfilInfo.disponibilidade} meses</p>
@@ -129,4 +125,3 @@ export const Perfil = () => {
     </div>
   );
 };
-
