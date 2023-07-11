@@ -5,7 +5,7 @@ import Container from "../../../components/Container";
 import "./login.css";
 import CoverImg from "../../../assets/cover-cadastro.jpg";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../../firebase";
+import { auth } from "../../../../src/firebase/config";
 
 export const UserContext = React.createContext();
 

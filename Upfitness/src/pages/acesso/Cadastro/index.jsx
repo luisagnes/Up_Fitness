@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../../firebase";
+import { auth } from "../../../../src/firebase/config";
 import Logo from "../../../assets/logo.png";
 import CoverImg from "../../../assets/cover-cadastro.jpg";
 import Container from "../../../components/Container";

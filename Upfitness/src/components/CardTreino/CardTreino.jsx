@@ -1,9 +1,21 @@
 import './CardTreino.css';
+import { useState } from 'react';
 
 export default function CardTreino(props) {
-  return (
-    <li className='treino-card'>
+  const [tempo, setTempo] = useState('');
 
+  const handleOKClick = () => {
+    if (tempo) {
+      props.onTreinoFeito(props.treino, tempo);
+    }
+  };
+
+  const handleTempoChange = (event) => {
+    setTempo(event.target.value);
+  };
+
+  return (
+    <li className={`treino-card ${props.treinoConcluido === props.treino ? 'concluido' : ''}`}>
       <table>
         <thead>
           <tr>
@@ -12,7 +24,6 @@ export default function CardTreino(props) {
             <th>Repetições</th>
           </tr>
         </thead>
-
         <tbody>
           <tr>
             <td>supino reto com barra</td>
@@ -41,6 +52,16 @@ export default function CardTreino(props) {
           </tr>
         </tbody>
       </table>
+      <div className="controls">
+        <input
+          type="text"
+          placeholder="Tempo (minutos)"
+          value={tempo}
+          onChange={handleTempoChange}
+        />
+        <button onClick={handleOKClick}>Treino Concluído</button>
+      </div>
     </li>
   );
 }
+

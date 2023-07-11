@@ -3,7 +3,7 @@ import Logo from "../../../assets/logo.png";
 import "./RecuperarSenha.css";
 import Container from "../../../components/Container";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../../../../firebase";
+import { auth } from "../../../../src/firebase/config";
 import { useState } from "react";
 import toastr from "toastr";
 import "toastr/build/toastr.css";
